@@ -11,29 +11,48 @@
             background: #ffffff;
             color: #000000;
             min-height: 100vh;
-            padding: 60px 20px;
-            max-width: 800px;
-            margin: 0 auto;
         }
-        a.back {
-            display: inline-block;
-            padding: 10px 24px;
-            border: 2px solid #000000;
-            background: #ffffff;
-            color: #000000;
+        nav {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #000000;
+            flex-wrap: wrap;
+        }
+        nav a {
+            padding: 16px 28px;
             text-decoration: none;
+            color: #000000;
             font-size: 0.95rem;
             font-weight: 600;
-            margin-bottom: 40px;
+            border-right: 1px solid #ccc;
             transition: background 0.2s, color 0.2s;
         }
-        a.back:hover { background: #000000; color: #ffffff; }
-        h1 { font-size: 2.2rem; margin-bottom: 24px; }
-        p { font-size: 1.05rem; line-height: 1.7; color: #333; }
+        nav a:last-child { border-right: none; }
+        nav a:hover { background: #000000; color: #ffffff; }
+        nav a.active { background: #000000; color: #ffffff; }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        h1 { font-size: 2.2rem; margin-bottom: 32px; }
+        p { font-size: 1.05rem; line-height: 1.7; color: #333; margin-bottom: 20px; }
     </style>
 </head>
 <body>
-    <a class="back" href="index.html">&larr; Back to Home</a>
-    <h1>Overall Capstone</h1>
+    <nav>
+        <a href="the-user.html">The User</a>
+        <a href="capstone-experience.html">Capstone Experience</a>
+        <a href="annotated-bibliography.html">Annotated Bibliography</a>
+        <a class="active" href="overall-capstone.html">Overall Capstone</a>
+    </nav>
+    <div class="content">
+        <h1>Overall Capstone</h1>
+        <p>Replace this paragraph with your own content. Use this opening to give a high-level summary of your entire capstone project and what it set out to achieve.</p>
+        <p>This is the second paragraph of placeholder text. You might discuss the problem statement, the motivation behind your project, and why this topic matters in a broader context.</p>
+        <p>Here is the third paragraph of placeholder text for you to replace. Consider describing your approach, the methods you used, and the key decisions that guided your process from beginning to end.</p>
+        <p>This fourth paragraph is also placeholder text. Reflect on the results or outcomes of your capstone, including what worked well and what you might do differently next time.</p>
+        <p>Finally, this fifth paragraph rounds out the placeholder content. Close with your final thoughts on the significance of your work and any next steps or future directions you envision.</p>
+    </div>
 </body>
 </html>
