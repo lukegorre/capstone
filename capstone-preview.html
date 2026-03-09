@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+        }
+
+        /* NAV BAR */
+        nav {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #000000;
+            flex-wrap: wrap;
+        }
+        nav a {
+            padding: 16px 28px;
+            text-decoration: none;
+            color: #000000;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-right: 1px solid #ccc;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        nav a:last-child { border-right: none; }
+        nav a:hover { background: #000000; color: #ffffff; }
+        nav a.active { background: #000000; color: #ffffff; }
+
+        /* PAGES */
+        .page { display: none; }
+        .page.visible { display: block; }
+
+        /* HOME PAGE */
+        .home-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+        }
+        .home-content h1 { font-size: 2.4rem; margin-bottom: 16px; }
+        .home-content p.subtitle {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 60px;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        .home-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 360px;
+        }
+        .home-nav a {
+            display: block;
+            text-align: center;
+            padding: 16px 32px;
+            border: 2px solid #000000;
+            background: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .home-nav a:hover { background: #000000; color: #ffffff; }
+
+        /* SUB PAGES */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .content h1 { font-size: 2.2rem; margin-bottom: 32px; }
+        .content h2 { font-size: 1.5rem; margin-top: 40px; margin-bottom: 12px; }
+        .content h2:first-of-type { margin-top: 0; }
+        .content p { font-size: 1.05rem; line-height: 1.7; color: #333; margin-bottom: 20px; }
+
+        /* BIBLIOGRAPHY */
+        ul.bib {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 32px;
+        }
+        ul.bib li {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #333;
+            padding-left: 40px;
+            text-indent: -40px;
+            margin-bottom: 14px;
+        }
+        ul.bib li a {
+            color: #000;
+            text-decoration: underline;
+        }
+        ul.bib li a:hover { color: #555; }
+
+        /* CAPSTONE EXPERIENCE CHOOSER */
+        .chooser {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .chooser h1 { font-size: 2.2rem; margin-bottom: 12px; }
+        .chooser p.intro {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        .cards {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .card {
+            flex: 1 1 320px;
+            border: 2px solid #000000;
+            padding: 32px 28px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .card:hover { background: #000000; color: #ffffff; }
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        .card:hover p { color: #ccc; }
+
+        /* BREADCRUMB */
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 24px;
+        }
+        .breadcrumb a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { color: #999; margin: 0 8px; }
+    </style>
+</head>
+<body>
+
+    <!-- NAV (hidden on home, shown on subpages) -->
+    <nav id="navbar" style="display:none;">
+        <a data-page="home">Home</a>
+        <a data-page="the-user">The User</a>
+        <a data-page="capstone-experience">Capstone Experience</a>
+        <a data-page="annotated-bibliography">Annotated Bibliography</a>
+        <a data-page="overall-capstone">Overall Capstone</a>
+    </nav>
+
+    <!-- HOME -->
+    <div class="page visible" id="home">
+        <div class="home-content">
+            <h1>Capstone Landing Page</h1>
+            <p class="subtitle">Welcome to my capstone experience. Explore the pages below to learn more.</p>
+            <div class="home-nav">
+                <a data-page="the-user">The User</a>
+                <a data-page="capstone-experience">Capstone Experience</a>
+                <a data-page="annotated-bibliography">Annotated Bibliography</a>
+                <a data-page="overall-capstone">Overall Capstone</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE USER -->
+    <div class="page" id="the-user">
+        <div class="content">
+            <h1>The User</h1>
+            <p>Replace this paragraph with your own content. This is the first section of placeholder text that you can overwrite with information about the user. Write about who the user is, their background, and what makes them relevant to this capstone project.</p>
+            <p>This is the second paragraph of placeholder text. You might use this space to describe the user's needs, goals, or challenges. Think about what drives them and what problems they are trying to solve in their daily life or work.</p>
+            <p>Here is the third paragraph of placeholder text for you to replace. Consider discussing the user's environment, the tools they currently use, or the context in which they operate. This helps paint a fuller picture for your reader.</p>
+            <p>This fourth paragraph is also placeholder text. You could use this section to talk about user research methods, interviews, surveys, or observations that helped you understand the user more deeply.</p>
+            <p>Finally, this fifth paragraph rounds out the placeholder content. Summarize your key takeaways about the user and explain how these insights shaped the direction of your capstone project going forward.</p>
+        </div>
+    </div>
+
+    <!-- CAPSTONE EXPERIENCE — CHOOSER -->
+    <div class="page" id="capstone-experience">
+        <div class="chooser">
+            <h1>Capstone Experience</h1>
+            <p class="intro">This capstone is made up of two distinct experiences. Choose one below to read more.</p>
+            <div class="cards">
+                <div class="card" data-page="experience-1">
+                    <h2>Experience 1 Name</h2>
+                    <p>A short description of the first capstone experience. Replace this with a brief preview of what this experience covers.</p>
+                </div>
+                <div class="card" data-page="experience-2">
+                    <h2>Experience 2 Name</h2>
+                    <p>A short description of the second capstone experience. Replace this with a brief preview of what this experience covers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPERIENCE 1 -->
+    <div class="page" id="experience-1">
+        <div class="content">
+            <div class="breadcrumb">
+                <a data-page="capstone-experience">Capstone Experience</a>
+                <span>&rsaquo;</span>
+                Experience 1 Name
+            </div>
+            <h1>Experience 1 Name</h1>
+            <p>Replace this paragraph with your own content. Introduce the first capstone experience, including what it involved and what you set out to accomplish.</p>
+            <p>This is the second paragraph of placeholder text. You might describe the timeline, the setting, or the people you worked with during this experience.</p>
+            <p>Here is the third paragraph of placeholder text for you to replace. Consider discussing the skills you applied, the challenges you faced, and how you worked through them.</p>
+            <p>This fourth paragraph is also placeholder text. Reflect on what you learned, any feedback you received, and how this experience contributed to your growth.</p>
+            <p>Finally, this fifth paragraph rounds out the placeholder content. Summarize the outcome of this experience and what it meant to your overall capstone journey.</p>
+        </div>
+    </div>
+
+    <!-- EXPERIENCE 2 -->
+    <div class="page" id="experience-2">
+        <div class="content">
+            <div class="breadcrumb">
+                <a data-page="capstone-experience">Capstone Experience</a>
+                <span>&rsaquo;</span>
+                Experience 2 Name
+            </div>
+            <h1>Experience 2 Name</h1>
+            <p>Replace this paragraph with your own content. Introduce the second capstone experience, including what it involved and what you set out to accomplish.</p>
+            <p>This is the second paragraph of placeholder text. You might describe the timeline, the setting, or the people you worked with during this experience.</p>
+            <p>Here is the third paragraph of placeholder text for you to replace. Consider discussing the skills you applied, the challenges you faced, and how you worked through them.</p>
+            <p>This fourth paragraph is also placeholder text. Reflect on what you learned, any feedback you received, and how this experience contributed to your growth.</p>
+            <p>Finally, this fifth paragraph rounds out the placeholder content. Summarize the outcome of this experience and what it meant to your overall capstone journey.</p>
+        </div>
+    </div>
+
+    <!-- ANNOTATED BIBLIOGRAPHY -->
+    <div class="page" id="annotated-bibliography">
+        <div class="content">
+            <h1>Annotated Bibliography</h1>
+
+            <h2>Map Creation</h2>
+            <p>This category includes videos and documentation for Godot game engine to create tilemap layers, ordering, scene transitions and collisions. This includes creating the map background itself, organizing the assets, and creating the scenes with collisions.</p>
+            <ul class="bib">
+                <li>Jackie Codes. "Godot 4 TileMap Tutorial Ep 1 | Setup, Layers, Animation." <em>YouTube</em>, 8 June 2023, <a href="https://www.youtube.com/watch?v=G6TC6ukmSc4" target="_blank">www.youtube.com/watch?v=G6TC6ukmSc4</a>.</li>
+                <li>PlayWithFurcifer. "How to Use the New TileMap in Godot 4." <em>YouTube</em>, 13 Feb. 2022, <a href="https://www.youtube.com/watch?v=tQSL2scuqeU" target="_blank">www.youtube.com/watch?v=tQSL2scuqeU</a>.</li>
+                <li>DevWorm. "The SIMPLEST WAY to Change Scenes in Godot." <em>YouTube</em>, 4 June 2022, <a href="https://www.youtube.com/watch?v=FuIn_1aK7rM" target="_blank">www.youtube.com/watch?v=FuIn_1aK7rM</a>.</li>
+                <li>"Using TileSets." <em>Godot Engine Documentation</em>, <a href="https://docs.godotengine.org/en/stable/tutorials/2d/using_tilesets.html" target="_blank">docs.godotengine.org/en/stable/tutorials/2d/using_tilesets.html</a>.</li>
+                <li>"Using TileMaps." <em>Godot Engine Documentation</em>, 2025, <a href="https://docs.godotengine.org/en/stable/tutorials/2d/using_tilemaps.html" target="_blank">docs.godotengine.org/en/stable/tutorials/2d/using_tilemaps.html</a>.</li>
+                <li>"TileMapLayer." <em>Godot Engine Documentation</em>, 2025, <a href="https://docs.godotengine.org/en/stable/classes/class_tilemaplayer.html" target="_blank">docs.godotengine.org/en/stable/classes/class_tilemaplayer.html</a>.</li>
+                <li>Chris' Tutorials. "How to Add Tilemap Collisions in Godot 4." <em>YouTube</em>, 28 June 2022, <a href="https://www.youtube.com/watch?v=1Uk1yhGtnOo" target="_blank">www.youtube.com/watch?v=1Uk1yhGtnOo</a>.</li>
+            </ul>
+
+            <h2>Character Creation</h2>
+            <p>These resources helped in asset creations, specifically for characters and NPCs in our game. The tutorials range from creating sprite nodes to creating animations and scripts to add movement for sprites.</p>
+            <ul class="bib">
+                <li>"How to Use an Animated Sprite in Godot." <em>YouTube</em>, <a href="https://www.youtube.com/shorts/lWCGYoAOmJQ" target="_blank">www.youtube.com/shorts/lWCGYoAOmJQ</a>.</li>
+                <li>swydev. "MASTER 2D Movement in Godot - Everything You Need to Know." <em>YouTube</em>, 26 July 2024, <a href="https://www.youtube.com/watch?v=RDT5hfYWCrQ" target="_blank">www.youtube.com/watch?v=RDT5hfYWCrQ</a>.</li>
+                <li>"2D Sprite Animation." <em>Godot Engine Documentation</em>, <a href="https://docs.godotengine.org/en/stable/tutorials/2d/2d_sprite_animation.html" target="_blank">docs.godotengine.org/en/stable/tutorials/2d/2d_sprite_animation.html</a>.</li>
+            </ul>
+
+            <h2>UI</h2>
+            <p>These tutorials helped with creating the UI. They cover creating and manipulating nodes to allow for user input while also covering how to align and transform them to make them more aesthetically pleasing.</p>
+            <ul class="bib">
+                <li>16BitDev. "Drag and Drop Godot 4." <em>YouTube</em>, 25 July 2023, <a href="https://www.youtube.com/watch?v=8cV-5ByZLO" target="_blank">www.youtube.com/watch?v=8cV-5ByZLO</a>.</li>
+                <li>Bramwell. "Smooth Drag N Drop: Godot Guide." <em>YouTube</em>, 30 June 2020, <a href="https://www.youtube.com/watch?v=iSpWZzL2i1o" target="_blank">www.youtube.com/watch?v=iSpWZzL2i1o</a>.</li>
+                <li>Octodemy. "Making a GOOD Drag and Drop Inventory." <em>YouTube</em>, 29 July 2025, <a href="https://www.youtube.com/watch?v=JUR1qQ79eJY" target="_blank">www.youtube.com/watch?v=JUR1qQ79eJY</a>.</li>
+                <li>IcyEngine. "Godot Programming UI Tutorial - MUST-HAVE Basics!" <em>YouTube</em>, 6 Mar. 2025, <a href="https://www.youtube.com/watch?v=vQFGSz_IeGs" target="_blank">www.youtube.com/watch?v=vQFGSz_IeGs</a>.</li>
+                <li>Godotneers. "Godot UI Basics - How to Build Beautiful Interfaces That Work Everywhere (Beginners)." <em>YouTube</em>, 1 Sept. 2023, <a href="https://www.youtube.com/watch?v=1_OFJLyqlXI" target="_blank">www.youtube.com/watch?v=1_OFJLyqlXI</a>.</li>
+                <li>Karto. "Godot Control Node (UI) Masterclass." <em>YouTube</em>, 28 Aug. 2024, <a href="https://www.youtube.com/watch?v=5Hog6a0EYa0" target="_blank">www.youtube.com/watch?v=5Hog6a0EYa0</a>.</li>
+            </ul>
+
+            <h2>Backend/Scripts</h2>
+            <p>These tutorials introduced us to the key components of script creation. Scripts are what powered the assets to perform their respective tasks via code. We used resources for tasks such as allowing the player to input text and movement, creating instances of assets, and sending signals from one sprite to another.</p>
+            <ul class="bib">
+                <li>"Creating Your First Script." <em>Godot Engine Documentation</em>, 2025, <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_first_script.html" target="_blank">docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_first_script.html</a>.</li>
+                <li>"Listening to Player Input." <em>Godot Engine Documentation</em>, 2026, <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_player_input.html" target="_blank">docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_player_input.html</a>.</li>
+                <li>"Signals." <em>Godot Engine Documentation</em>, <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html" target="_blank">docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html</a>.</li>
+                <li>"Creating Instances." <em>Godot Engine Documentation</em>, 2024, <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/instancing.html" target="_blank">docs.godotengine.org/en/stable/getting_started/step_by_step/instancing.html</a>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- OVERALL CAPSTONE -->
+    <div class="page" id="overall-capstone">
+        <div class="content">
+            <h1>Overall Capstone</h1>
+            <p>Replace this paragraph with your own content. Use this opening to give a high-level summary of your entire capstone project and what it set out to achieve.</p>
+            <p>This is the second paragraph of placeholder text. You might discuss the problem statement, the motivation behind your project, and why this topic matters in a broader context.</p>
+            <p>Here is the third paragraph of placeholder text for you to replace. Consider describing your approach, the methods you used, and the key decisions that guided your process from beginning to end.</p>
+            <p>This fourth paragraph is also placeholder text. Reflect on the results or outcomes of your capstone, including what worked well and what you might do differently next time.</p>
+            <p>Finally, this fifth paragraph rounds out the placeholder content. Close with your final thoughts on the significance of your work and any next steps or future directions you envision.</p>
+        </div>
+    </div>
+
+    <script>
+        // Pages that should highlight "Capstone Experience" in the nav
+        const experiencePages = ['capstone-experience', 'experience-1', 'experience-2'];
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('visible'));
+            document.getElementById(pageId).classList.add('visible');
+
+            const navbar = document.getElementById('navbar');
+            navbar.style.display = pageId === 'home' ? 'none' : 'flex';
+
+            // Highlight the correct nav item
+            navbar.querySelectorAll('a').forEach(a => {
+                const navTarget = a.dataset.page;
+                if (navTarget === 'capstone-experience') {
+                    a.classList.toggle('active', experiencePages.includes(pageId));
+                } else {
+                    a.classList.toggle('active', navTarget === pageId);
+                }
+            });
+
+            window.scrollTo(0, 0);
+        }
+
+        document.querySelectorAll('[data-page]').forEach(link => {
+            link.addEventListener('click', () => showPage(link.dataset.page));
+        });
+    </script>
+</body>
+</html>
