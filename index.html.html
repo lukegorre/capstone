@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+        }
+
+        /* NAV BAR */
+        nav {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #000000;
+            flex-wrap: wrap;
+        }
+        nav a {
+            padding: 16px 28px;
+            text-decoration: none;
+            color: #000000;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-right: 1px solid #ccc;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        nav a:last-child { border-right: none; }
+        nav a:hover { background: #000000; color: #ffffff; }
+        nav a.active { background: #000000; color: #ffffff; }
+
+        /* PAGES */
+        .page { display: none; }
+        .page.visible { display: block; }
+
+        /* HOME PAGE */
+        .home-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+        }
+        .home-content h1 { font-size: 2.4rem; margin-bottom: 16px; }
+        .home-content p.subtitle {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 60px;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        .home-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 360px;
+        }
+        .home-nav a {
+            display: block;
+            text-align: center;
+            padding: 16px 32px;
+            border: 2px solid #000000;
+            background: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .home-nav a:hover { background: #000000; color: #ffffff; }
+
+        /* SUB PAGES */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .content h1 { font-size: 2.2rem; margin-bottom: 32px; }
+        .content h2 { font-size: 1.5rem; margin-top: 40px; margin-bottom: 12px; }
+        .content h2:first-of-type { margin-top: 0; }
+        .content p { font-size: 1.05rem; line-height: 1.7; color: #333; margin-bottom: 20px; }
+
+        /* BIBLIOGRAPHY */
+        ul.bib {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 32px;
+        }
+        ul.bib li {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #333;
+            padding-left: 40px;
+            text-indent: -40px;
+            margin-bottom: 14px;
+        }
+        ul.bib li a {
+            color: #000;
+            text-decoration: underline;
+        }
+        ul.bib li a:hover { color: #555; }
+
+        /* PHASE LISTS */
+        ul.phases {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 24px;
+            margin-top: -8px;
+        }
+        ul.phases li {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            padding-left: 24px;
+            margin-bottom: 6px;
+        }
+
+        /* CAPSTONE EXPERIENCE CHOOSER */
+        .chooser {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .chooser h1 { font-size: 2.2rem; margin-bottom: 12px; }
+        .chooser p.intro {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        .cards {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .card {
+            flex: 1 1 320px;
+            border: 2px solid #000000;
+            padding: 32px 28px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .card:hover { background: #000000; color: #ffffff; }
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        .card:hover p { color: #ccc; }
+
+        /* BREADCRUMB */
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 24px;
+        }
+        .breadcrumb a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { color: #999; margin: 0 8px; }
+    </style>
+</head>
+<body>
+
+    <!-- NAV (hidden on home, shown on subpages) -->
+    <nav id="navbar" style="display:none;">
+        <a data-page="home">Home</a>
+        <a data-page="the-user">The User</a>
+        <a data-page="capstone-experience">Capstone Experience</a>
+        <a data-page="annotated-bibliography">Annotated Bibliography</a>
+        <a data-page="overall-capstone">Overall Capstone</a>
+    </nav>
+
+    <!-- HOME -->
+    <div class="page visible" id="home">
+        <div class="home-content">
+            <h1>Capstone Landing Page</h1>
+            <p class="subtitle">Welcome to my capstone experience. Explore the pages below to learn more.</p>
+            <div class="home-nav">
+                <a data-page="the-user">The User</a>
+                <a data-page="capstone-experience">Capstone Experience</a>
+                <a data-page="annotated-bibliography">Annotated Bibliography</a>
+                <a data-page="overall-capstone">Overall Capstone</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE USER -->
+    <div class="page" id="the-user">
+        <div class="content">
+            <h1>The User</h1>
+
+            <h2>Why?</h2>
+            <p>Our game was created to provide an alternative resource for learning Data Structures and Algorithms. Because this topic is so technical, other resources tend to be dry and boring. By breaking problems down into small fun exercises, we hope to provide relief from the burnout traditional resources can bring.</p>
+
+            <h2>Who?</h2>
+            <p>As a <strong>student</strong>, you play Chronicles of Big O to learn about Data Structures and Algorithms through intuitive visuals and fun gameplay.</p>
+            <p>As a <strong>job seeker</strong>, you play Chronicles of Big O to review Data Structures and Algorithms related to Leetcode to prepare you for technical interviews in a fun manner that can help prevent burnout.</p>
+            <p>As a <strong>teacher</strong>, you supplement your lessons with Chronicles of Big O to help reinforce your student's knowledge of Data Structures and Algorithms.</p>
+
+            <h2>What?</h2>
+            <p>In our game, we represent each data structure with an object that has similar properties and center the exercises around the object in a way that makes sense. For example, we convert an array data structure into a train with windows, where each window represents the array's indices. This helps with visualizing the data structure and the problem, allowing for a more engaging and immersive experience. Additionally, it teaches the players in an educational environment that allows them to make mistakes and learn from them.</p>
+
+            <h2>How?</h2>
+            <p><strong>Array Level:</strong></p>
+            <ul class="phases">
+                <li>Phase 1: Insertion into an array to teach O(1) insertion</li>
+                <li>Phase 2: Linear searching of an array in O(N) time</li>
+                <li>Phase 3: Bubble sort to teach sorting in O(N&sup2;) time</li>
+                <li>Phase 4: Binary search to teach O(logN) search element search time</li>
+            </ul>
+            <p><strong>Linked List Level:</strong></p>
+            <ul class="phases">
+                <li>Phase 1: Teaches them about nodes &mdash; specifically Head, Tail, and Links between them</li>
+                <li>Phase 2: Traversal of Nodes in a Linked List</li>
+                <li>Phase 3: Reversing a Linked List</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CAPSTONE EXPERIENCE — CHOOSER -->
+    <div class="page" id="capstone-experience">
+        <div class="chooser">
+            <h1>Capstone Experience</h1>
+            <p class="intro">This capstone is made up of two distinct experiences. Choose one below to read more.</p>
+            <div class="cards">
+                <div class="card" data-page="experience-1">
+                    <h2>Experience 1 Name</h2>
+                    <p>A short description of the first capstone experience. Replace this with a brief preview of what this experience covers.</p>
+                </div>
+                <div class="card" data-page="experience-2">
+                    <h2>Experience 2 Name</h2>
+                    <p>A short description of the second capstone experience. Replace this with a brief preview of what this experience covers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPERIENCE 1 -->
+    <div class="page" id="experience-1">
+        <div class="content">
+            <div class="breadcrumb">
+                <a data-page="capstone-experience">Capstone Experience</a>
+                <span>&rsaquo;</span>
+                Experience 1 Name
+            </div>
+            <h1>Experience 1 Name</h1>
+            <p>Replace this paragraph with your own content. Introduce the first capstone experience, including what it involved and what you set out to accomplish.</p>
+            <p>This is the second paragraph of placeholder text. You might describe the timeline, the setting, or the people you worked with during this experience.</p>
+            <p>Here is the third paragraph of placeholder text for you to replace. Consider discussing the skills you applied, the challenges you faced, and how you worked through them.</p>
+            <p>This fourth paragraph is also placeholder text. Reflect on what you learned, any feedback you received, and how this experience contributed to your growth.</p>
+            <p>Finally, this fifth paragraph rounds out the placeholder content. Summarize the outcome of this experience and what it meant to your overall capstone journey.</p>
+        </div>
+    </div>
+
+    <!-- EXPERIENCE 2 -->
+    <div class="page" id="experience-2">
+        <div class="content">
+            <div class="breadcrumb">
+                <a data-page="capstone-experience">Capstone Experience</a>
+                <span>&rsaquo;</span>
+                Experience 2 Name
+            </div>
+            <h1>Experience 2 Name</h1>
+            <p>Replace this paragraph with your own content. Introduce the second capstone experience, including what it involved and what you set out to accomplish.</p>
+            <p>This is the second paragraph of placeholder text. You might describe the timeline, the setting, or the people you worked with during this experience.</p>
+            <p>Here is the third paragraph of placeholder text for you to replace. Consider discussing the skills you applied, the challenges you faced, and how you worked through them.</p>
+            <p>This fourth paragraph is also placeholder text. Reflect on what you learned, any feedback you received, and how this experience contributed to your growth.</p>
+            <p>Finally, this fifth paragraph rounds out the placeholder content. Summarize the outcome of this experience and what it meant to your overall capstone journey.</p>
+        </div>
+    </div>
+
+    <!-- ANNOTATED BIBLIOGRAPHY -->
+    <div class="page" id="annotated-bibliography">
+        <div class="content">
+            <h1>Annotated Bibliography</h1>
+
+            <h2>Map Creation</h2>
+            <p>This category includes videos and documentation for Godot game engine to create tilemap layers, ordering, scene transitions and collisions. This includes creating the map background itself, organizing the assets, and creating the scenes with collisions.</p>
+            <ul class="bib">
+                <li>Jackie Codes. "Godot 4 TileMap Tutorial Ep 1 | Setup, Layers, Animation." <em>YouTube</em>, 8 June 2023, <a href="https://www.youtube.com/watch?v=G6TC6ukmSc4" target="_blank">www.youtube.com/watch?v=G6TC6ukmSc4</a>.</li>
+                <li>PlayWithFurcifer. "How to Use the New TileMap in Godot 4." <em>YouTube</em>, 13 Feb. 2022, <a href="https://www.youtube.com/watch?v=tQSL2scuqeU" target="_blank">www.youtube.com/watch?v=tQSL2scuqeU</a>.</li>
+                <li>DevWorm. "The SIMPLEST WAY to Change Scenes in Godot." <em>YouTube</em>, 4 June 2022, <a href="https://www.youtube.com/watch?v=FuIn_1aK7rM" target="_blank">www.youtube.com/watch?v=FuIn_1aK7rM</a>.</li>
+                <li>"Using TileSets." <em>Godot Engine Documentation</em>, <a href="https://docs.godotengine.org/en/stable/tutorials/2d/using_tilesets.html" target="_blank">docs.godotengine.org/en/stable/tutorials/2d/using_tilesets.html</a>.</li>
+                <li>"Using TileMaps." <em>Godot Engine Documentation</em>, 2025, <a href="https://docs.godotengine.org/en/stable/tutorials/2d/using_tilemaps.html" target="_blank">docs.godotengine.org/en/stable/tutorials/2d/using_tilemaps.html</a>.</li>
+                <li>"TileMapLayer." <em>Godot Engine Documentation</em>, 2025, <a href="https://docs.godotengine.org/en/stable/classes/class_tilemaplayer.html" target="_blank">docs.godotengine.org/en/stable/classes/class_tilemaplayer.html</a>.</li>
+                <li>Chris' Tutorials. "How to Add Tilemap Collisions in Godot 4." <em>YouTube</em>, 28 June 2022, <a href="https://www.youtube.com/watch?v=1Uk1yhGtnOo" target="_blank">www.youtube.com/watch?v=1Uk1yhGtnOo</a>.</li>
+            </ul>
+
+            <h2>Character Creation</h2>
+            <p>These resources helped in asset creations, specifically for characters and NPCs in our game. The tutorials range from creating sprite nodes to creating animations and scripts to add movement for sprites.</p>
+            <ul class="bib">
+                <li>"How to Use an Animated Sprite in Godot." <em>YouTube</em>, <a href="https://www.youtube.com/shorts/lWCGYoAOmJQ" target="_blank">www.youtube.com/shorts/lWCGYoAOmJQ</a>.</li>
+                <li>swydev. "MASTER 2D Movement in Godot - Everything You Need to Know." <em>YouTube</em>, 26 July 2024, <a href="https://www.youtube.com/watch?v=RDT5hfYWCrQ" target="_blank">www.youtube.com/watch?v=RDT5hfYWCrQ</a>.</li>
+                <li>"2D Sprite Animation." <em>Godot Engine Documentation</em>, <a href="https://docs.godotengine.org/en/stable/tutorials/2d/2d_sprite_animation.html" target="_blank">docs.godotengine.org/en/stable/tutorials/2d/2d_sprite_animation.html</a>.</li>
+            </ul>
+
+            <h2>UI</h2>
+            <p>These tutorials helped with creating the UI. They cover creating and manipulating nodes to allow for user input while also covering how to align and transform them to make them more aesthetically pleasing.</p>
+            <ul class="bib">
+                <li>16BitDev. "Drag and Drop Godot 4." <em>YouTube</em>, 25 July 2023, <a href="https://www.youtube.com/watch?v=8cV-5ByZLO" target="_blank">www.youtube.com/watch?v=8cV-5ByZLO</a>.</li>
+                <li>Bramwell. "Smooth Drag N Drop: Godot Guide." <em>YouTube</em>, 30 June 2020, <a href="https://www.youtube.com/watch?v=iSpWZzL2i1o" target="_blank">www.youtube.com/watch?v=iSpWZzL2i1o</a>.</li>
+                <li>Octodemy. "Making a GOOD Drag and Drop Inventory." <em>YouTube</em>, 29 July 2025, <a href="https://www.youtube.com/watch?v=JUR1qQ79eJY" target="_blank">www.youtube.com/watch?v=JUR1qQ79eJY</a>.</li>
+                <li>IcyEngine. "Godot Programming UI Tutorial - MUST-HAVE Basics!" <em>YouTube</em>, 6 Mar. 2025, <a href="https://www.youtube.com/watch?v=vQFGSz_IeGs" target="_blank">www.youtube.com/watch?v=vQFGSz_IeGs</a>.</li>
+                <li>Godotneers. "Godot UI Basics - How to Build Beautiful Interfaces That Work Everywhere (Beginners)." <em>YouTube</em>, 1 Sept. 2023, <a href="https://www.youtube.com/watch?v=1_OFJLyqlXI" target="_blank">www.youtube.com/watch?v=1_OFJLyqlXI</a>.</li>
+                <li>Karto. "Godot Control Node (UI) Masterclass." <em>YouTube</em>, 28 Aug. 2024, <a href="https://www.youtube.com/watch?v=5Hog6a0EYa0" target="_blank">www.youtube.com/watch?v=5Hog6a0EYa0</a>.</li>
+            </ul>
+
+            <h2>Backend/Scripts</h2>
+            <p>These tutorials introduced us to the key components of script creation. Scripts are what powered the assets to perform their respective tasks via code. We used resources for tasks such as allowing the player to input text and movement, creating instances of assets, and sending signals from one sprite to another.</p>
+            <ul class="bib">
+                <li>"Creating Your First Script." <em>Godot Engine Documentation</em>, 2025, <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_first_script.html" target="_blank">docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_first_script.html</a>.</li>
+                <li>"Listening to Player Input." <em>Godot Engine Documentation</em>, 2026, <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_player_input.html" target="_blank">docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_player_input.html</a>.</li>
+                <li>"Signals." <em>Godot Engine Documentation</em>, <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html" target="_blank">docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html</a>.</li>
+                <li>"Creating Instances." <em>Godot Engine Documentation</em>, 2024, <a href="https://docs.godotengine.org/en/stable/getting_started/step_by_step/instancing.html" target="_blank">docs.godotengine.org/en/stable/getting_started/step_by_step/instancing.html</a>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- OVERALL CAPSTONE -->
+    <div class="page" id="overall-capstone">
+        <div class="content">
+            <h1>Overall Capstone</h1>
+
+            <h2>Approach and Evolution</h2>
+            <p>Initially, we had wanted to cover the fundamental concepts and move incrementally. As we started developing our project, we realized that we wanted to cover more complex data structures, as those were the highly technical concepts that most students struggled with. Later down the line, we also shifted our stance on letting users make mistakes, giving more freedom to the user to allow for greater learning opportunities.</p>
+
+            <h2>Team Structure and Responsibilities</h2>
+            <p>Dividing responsibilities among the two team members was a key part in ensuring we delivered a successful project by the set deadline. As a group, we assessed each group member's strengths and weaknesses and assigned responsibilities based on individual traits.</p>
+            <p><strong>Lucas</strong> was primarily responsible for creating the supporting backend code to allow the sprites of the game to interact amongst each other. This included programming data structures to act as the underlying support for the visual data structures. Furthermore, this required programming assets to act as values inside the train as well as nodes in the linked list. These assets needed to be movable and updatable based on user input.</p>
+            <p><strong>Daniel</strong> was responsible for creating visual assets and the front-end. This included creating the map, which was done layer by layer to allow edits throughout the development of the game. After the map creation, the UI was then created to support the backend code. This UI included indices for the array along with a drag and drop feature with connected support to the map. When a user dragged an NPC into the UI, it populates the train with that NPC and assigns it a respective index in the backend.</p>
+
+            <h2>Challenges Faced and Lessons Learned</h2>
+            <p>Through our capstone journey, we faced and overcame many challenges. One of the main challenges stemmed from working on such a big project over an extended period of time with a team. This is because we each worked on separate parts of the project. Later on, we realized that merging our work was actually really difficult because we hadn't planned a lot of our shared components. This meant that sometimes we'd have to completely modify one person's work to fit the others.</p>
+            <p>From this experience, we both learned how important planning is when dividing up work. Communicating and defining what individual work should look like will help save time and make merging work significantly easier and more efficient later down the road.</p>
+            <p>Something that was also useful for capstone was documenting our work as we were doing it. This helped with weekly reports as we didn't waste time trying to remember what we did or where our work was stored. It also made our reflections more accurate and detailed, as it was still fresh in our minds.</p>
+
+            <h2>Conclusion</h2>
+            <p>In conclusion, our group developed many new technical and emotional skills and delivered a strong demonstration of our original project concept. The current state of our project serves as an example of what the fully implemented game could become in the future. As a group, we contributed a combined 800 hours of work to both develop the game and complete all capstone assignments simultaneously. We spent many hours collaborating and dividing responsibilities among ourselves to ensure our weekly tasks were completed. Throughout the process, we improved our ability to communicate technical concepts clearly and maintained full transparency so that every member understood the true scope of the remaining work.</p>
+            <p>As we worked through the game, we encountered many technical challenges that required constant improvement from our group members to address. Many bugs and features required referencing documentation and tutorials to implement and fix. This experience taught us as developers to plan more effectively and to combat issues as they arise. Ultimately, our efforts created a game in which players can interact with complex data structures and algorithms in an intuitive way.</p>
+
+            <h2>Next Steps</h2>
+            <p>Moving forward, we plan to develop additional levels and expand on existing ones. Future level plans include Binary Trees, Queues, and Stacks. Additionally, game expansions will be made to reward the player for each level and phase completed. Each level will have a dynamic feature to allow for engaging and rewarding replayability. Ultimately, we hope to publish the game on Steam once these game additions are implemented.</p>
+        </div>
+    </div>
+
+    <script>
+        // Pages that should highlight "Capstone Experience" in the nav
+        const experiencePages = ['capstone-experience', 'experience-1', 'experience-2'];
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('visible'));
+            document.getElementById(pageId).classList.add('visible');
+
+            const navbar = document.getElementById('navbar');
+            navbar.style.display = pageId === 'home' ? 'none' : 'flex';
+
+            // Highlight the correct nav item
+            navbar.querySelectorAll('a').forEach(a => {
+                const navTarget = a.dataset.page;
+                if (navTarget === 'capstone-experience') {
+                    a.classList.toggle('active', experiencePages.includes(pageId));
+                } else {
+                    a.classList.toggle('active', navTarget === pageId);
+                }
+            });
+
+            window.scrollTo(0, 0);
+        }
+
+        document.querySelectorAll('[data-page]').forEach(link => {
+            link.addEventListener('click', () => showPage(link.dataset.page));
+        });
+    </script>
+</body>
+</html>
