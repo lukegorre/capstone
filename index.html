@@ -190,7 +190,7 @@
     <div class="page visible" id="home">
         <div class="home-content">
             <h1>Capstone Landing Page</h1>
-            <p class="subtitle">Welcome to our capstone experience. We have created a game that gamifies Data Structures and Algorithms (DSA), transforming complex programming topics into visually intuitive levels. Created by Lucas Gorre and Daniel Kang.</p>
+            <p class="subtitle">Welcome to our capstone experience. We have created a game titled "Chronicles of Big O" that gamifies Data Structures and Algorithms (DSA), transforming complex programming topics into visually intuitive levels. Created by Lucas Gorre and Daniel Kang.</p>
             <div class="home-nav">
                 <a data-page="the-user">The User</a>
                 <a data-page="capstone-experience">Capstone Experience</a>
@@ -406,30 +406,82 @@
         </div>
     </div>
 
-    <!-- OVERALL CAPSTONE -->
+    <!-- OVERALL CAPSTONE — CHOOSER -->
     <div class="page" id="overall-capstone">
-        <div class="content">
+        <div class="chooser">
             <h1>Overall Capstone</h1>
+            <p class="intro">Read each team member's personal narrative below.</p>
+            <div class="cards">
+                <div class="card" data-page="narrative-lucas">
+                    <h2>Lucas</h2>
+                    <p>Lucas Narrative</p>
+                </div>
+                <div class="card" data-page="narrative-daniel">
+                    <h2>Daniel</h2>
+                    <p>Daniel Narrative</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LUCAS NARRATIVE -->
+    <div class="page" id="narrative-lucas">
+        <div class="content">
+            <div class="breadcrumb">
+                <a data-page="overall-capstone">Overall Capstone</a>
+                <span>&rsaquo;</span>
+                Lucas Narrative
+            </div>
+            <h1>Lucas Narrative</h1>
 
             <h2>Approach and Evolution</h2>
-            <p>Initially, we had wanted to cover the fundamental concepts and move incrementally. As we started developing our project, we realized that we wanted to cover more complex data structures, as those were the highly technical concepts that most students struggled with. Later down the line, we also shifted our stance on letting users make mistakes, giving more freedom to the user to allow for greater learning opportunities.</p>
+            <p>In our senior year, Daniel and I were holding each other accountable to do one LeetCode problem each and every day, with a punishment if one of us fell short. Day to day, we developed our programming skills and felt better about LeetCode-style questions as we progressed. In our free time, we would both play games with each other and individually. We had previously worked together in coursework, often taking many of the same classes, and with our Capstone class around the corner, we started brainstorming.</p>
+            <p>The combination of working well together, our love for games, and our dedication to improving our computer science skills led us to create the idea for Chronicles of Big O. We combined these interests with the goal of making LeetCode fun, instead of feeling like a mindless grind. The first idea I had for the game was a 3D implementation using Unity. We soon found there was a lack of assets for 3D sprites and felt our time would be better spent making the game in 2D.</p>
+            <p>Once we decided to make a 2-Dimensional game, our game went through many iterations. Our initial idea involved a map in which the user could physically move their character to go from area to area to both learn new concepts and expand the world they occupied. We quickly found this scope was too large for the sake of the Capstone and decided on scoping the Capstone down to the level you see now, which consists of four unique phases in which you manipulate an Array. We felt the array is a fundamental computer science building block that will help them learn more difficult concepts later.</p>
 
             <h2>Team Structure and Responsibilities</h2>
             <p>Dividing responsibilities among the two team members was a key part in ensuring we delivered a successful project by the set deadline. As a group, we assessed each group member's strengths and weaknesses and assigned responsibilities based on individual traits.</p>
-            <p><strong>Lucas</strong> was primarily responsible for creating the supporting backend code to allow the sprites of the game to interact amongst each other. This included programming data structures to act as the underlying support for the visual data structures. Furthermore, this required programming assets to act as values inside the train as well as nodes in the linked list. These assets needed to be movable and updatable based on user input.</p>
-            <p><strong>Daniel</strong> was responsible for creating visual assets and the front-end. This included creating the map, which was done layer by layer to allow edits throughout the development of the game. After the map creation, the UI was then created to support the backend code. This UI included indices for the array along with a drag and drop feature with connected support to the map. When a user dragged an NPC into the UI, it populates the train with that NPC and assigns it a respective index in the backend.</p>
+            <p>I was primarily responsible for creating the supporting backend code to allow the sprites of the game to interact with each other. This included programming data structures to act as the underlying support for the visual data structures. Furthermore, this required programming assets to act as values inside the train as well as nodes in the linked list. These assets needed to be movable and updatable based on user input.</p>
+            <p>Additionally, I was responsible for creating the menu, to allow my development of the backend to be isolated for each phase. This separation of scenes allowed both Daniel and I to work on one phase at a time without needing any coupling between the phases. The menu greatly aided our development, and we soon saw large amounts of improvement in each iteration.</p>
 
             <h2>Challenges Faced and Lessons Learned</h2>
-            <p>Through our capstone journey, we faced and overcame many challenges. One of the main challenges stemmed from working on such a big project over an extended period of time with a team. This is because we each worked on separate parts of the project. Later on, we realized that merging our work was actually really difficult because we hadn't planned a lot of our shared components. This meant that sometimes we'd have to completely modify one person's work to fit the others.</p>
-            <p>From this experience, we both learned how important planning is when dividing up work. Communicating and defining what individual work should look like will help save time and make merging work significantly easier and more efficient later down the road.</p>
-            <p>Something that was also useful for capstone was documenting our work as we were doing it. This helped with weekly reports as we didn't waste time trying to remember what we did or where our work was stored. It also made our reflections more accurate and detailed, as it was still fresh in our minds.</p>
+            <p>When developing the supporting code for the project, Daniel and I found it difficult to combine our work due to our separate programming implementations. We first scoped the array-level core functionality and decided what we wanted it to look like both in code and visually. I was tasked with creating the backend, and when it came time to combine our code, I quickly found I was missing assets Daniel had used, and my code methods took very different parameters while relying on different nodes. I struggled to refactor this code and learned how important it is to define code parameters and node structure before starting implementation. Looking back, Daniel and I should have communicated and planned this to allow smooth integration of our parts.</p>
+            <p>The second major challenge we faced in our group work was planning thorough schedules and meeting personal deadlines. Many times, Daniel and I would text each other in the morning to ask if we were available for that day. We would then meet that day and begin working on the assignments due for the week. At first, this worked for us, but we soon found that we were running out of time when we were meeting and would often have to meet the next day at inconvenient times to complete the work. I personally learned from this experience that communicating my availability along with my general mood and energy level can greatly improve my team's performance. Being honest with each other and time blocking made us a much more effective team, and we soon completed assignments before the deadline instead of at the last minute.</p>
 
             <h2>Conclusion</h2>
-            <p>In conclusion, our group developed many new technical and emotional skills and delivered a strong demonstration of our original project concept. The current state of our project serves as an example of what the fully implemented game could become in the future. As a group, we contributed a combined 800 hours of work to both develop the game and complete all capstone assignments simultaneously. We spent many hours collaborating and dividing responsibilities among ourselves to ensure our weekly tasks were completed. Throughout the process, we improved our ability to communicate technical concepts clearly and maintained full transparency so that every member understood the true scope of the remaining work.</p>
-            <p>As we worked through the game, we encountered many technical challenges that required constant improvement from our group members to address. Many bugs and features required referencing documentation and tutorials to implement and fix. This experience taught us as developers to plan more effectively and to combat issues as they arise. Ultimately, our efforts created a game in which players can interact with complex data structures and algorithms in an intuitive way.</p>
+            <p>This capstone experience required me to invest 400 hours into developing a project, and I can confidently say that I am fulfilled with the resulting game. Daniel and I developed a strong first level that we can now expand greatly on. We no longer face the steep learning curve of game development and world-building, and are free to add as many DSA levels as we can take pride in. Through this project, I learned technical and communication skills and had the opportunity to build a working product from scratch. The entire development process was an integral part of furthering my education, and I look forward to future adventures.</p>
+            <p>Moving forward, I hope to make the levels more educational while the user is playing them without guiding them through text boxes. As the backend developer, I would like the user to gain a strong understanding of the data structures and algorithms without needing to give them written instructions. For example, the addition of making the user type the new indices for binary once they choose left or right allows the user to learn while playing the game. Though I achieved this in phase 4 of level one, I would like to make each level a seamless learning experience for the user. These levels will allow the user to have fun while truly learning in an intuitive way. Once we feel we have achieved these goals, we will move to publish it on Steam and give access to educators as a learning aid.</p>
+        </div>
+    </div>
 
-            <h2>Next Steps</h2>
-            <p>Moving forward, we plan to develop additional levels and expand on existing ones. Future level plans include Binary Trees, Queues, and Stacks. Additionally, game expansions will be made to reward the player for each level and phase completed. Each level will have a dynamic feature to allow for engaging and rewarding replayability. Ultimately, we hope to publish the game on Steam once these game additions are implemented.</p>
+    <!-- DANIEL NARRATIVE -->
+    <div class="page" id="narrative-daniel">
+        <div class="content">
+            <div class="breadcrumb">
+                <a data-page="overall-capstone">Overall Capstone</a>
+                <span>&rsaquo;</span>
+                Daniel Narrative
+            </div>
+            <h1>Daniel Narrative</h1>
+
+            <h2>Approach and Evolution</h2>
+            <p>Initially, Luke and I came up with our project idea from grinding Leetcode. We both started off by using Neetcode as our learning resource. While Neetcode is an amazing resource, it falls short in certain areas. For example, he provides intuitive high level explanations of the concepts required to solve each problem, but doesn't go too deep into the low level ideas before showing the solutions. From this, we thought creating a resource that visualizes these problems could help individuals gain a better understanding of these concepts without showing the full solution.</p>
+            <p>From this idea, we ended up moving more towards data structures and algorithms as a more general resource to cater to a larger audience. We wanted to cover the fundamental data structures that students initially learn, and landed on Arrays, Queues, and Stacks. Later on, we thought that was too simple, and wanted to add more complex data structures. Because we underestimated the scope of our project, we ended up just creating a game around arrays.</p>
+
+            <h2>Team Structure and Responsibilities</h2>
+            <p>Luke and I hadn't really decided on individual roles and responsibilities until we got deeper into the first quarter. We hadn't really gotten a clear idea of what we wanted our project to look like, and spent a lot of time deciding what data structures we wanted to display in our project. When we started implementing our game, I ended up naturally shifting towards UI, while Luke worked more on the backend. These roles solidified more as the second quarter started.</p>
+            <p>Dividing responsibilities helped separate labor into two distinct categories, Frontend and Backend. This allowed Luke and I to work more efficiently in our own time and meet project deadlines. Luke mainly worked on creating the code to support the game mechanics. This included programming the logic behind each separate level and combining the scripts to work with the frontend nodes.</p>
+            <p>I was more responsible for creating the maps, visual assets, sprites, and the UI. The map was created using different layers to visualize the ground, key assets, and any decorations to make the scene look nicer. After the map was created, I made the passenger sprites, player sprites and animations, as well as the UI which is the main form of interaction between the user and the game.</p>
+
+            <h2>Challenges Faced and Lessons Learned</h2>
+            <p>Throughout our capstone journey, Luke and I faced and overcame many challenges. One of the main challenges we faced together was working on such a big project over an extended period of time. Through this time period, we had to coordinate our time through different school and work schedules and ensure proper communication about work done for the project. It was through this experience that I had learned how difficult it was to merge individual code into a polished final product.</p>
+            <p>A challenge I personally faced when working on creating the UI was creating something completely different from all the available tutorials online. I had envisioned creating the UI working a very specific way and found that all tutorials landed a bit short of what I wanted. I ended up having to watch multiple tutorials to emulate a final product I was happy with. From this I learned that most things you want to create aren't going to have exact blueprints and tutorials for you to follow. Most times you'll be learning small things and creating something big out of the bits and pieces you pick up along the way, which I've come to enjoy.</p>
+            <p>While working, I also had a lot of trouble keeping track of work. I would always save that for the end of the week, and found myself spending hours trying to collect artifacts of what I'd accomplished and thinking about what I actually did. By logging artifacts and work I had done as I finished a session, I drastically lowered the amount of time spent tracking what work I had done. It also made it easier to pick up work where I had left off.</p>
+
+            <h2>Conclusion</h2>
+            <p>Overall, it was through this capstone experience that I was able to create something I am truly proud of while also being able to learn important technical skills. It was through the development of our project that I was able to experience the full software development lifecycle of designing a product from scratch, creating prototypes, and refining the product through user feedback.</p>
+            <p>For the future of our game, I hope to implement additional levels for Arrays, introduce additional data structures, and create in-game rewards and cosmetics to help reward players for completing levels. A personal goal of mine is to further develop the UI to fit a theme, making it more unique looking. Because the user will spend most of their time looking and interacting with the menu, I want to really polish it into something the user enjoys using and looking at. Additionally, for future data structures, I want to create more fun ways of interacting with the level. With data structures like linked lists and graphs, I have a lot more freedom with the method of representation.</p>
+            <p>For each level, we'd also like to include dynamic sizing of assets to give the user a unique experience with each playthrough. Including different sizes for each data structure and having dynamic variables will not only help the user learn through different experiences, it can also help the game feel less stale and more fun to play.</p>
         </div>
     </div>
 
@@ -443,10 +495,14 @@
             const navbar = document.getElementById('navbar');
             navbar.style.display = pageId === 'home' ? 'none' : 'flex';
 
+            const narrativePages = ['overall-capstone', 'narrative-lucas', 'narrative-daniel'];
+
             navbar.querySelectorAll('a').forEach(a => {
                 const navTarget = a.dataset.page;
                 if (navTarget === 'capstone-experience') {
                     a.classList.toggle('active', experiencePages.includes(pageId));
+                } else if (navTarget === 'overall-capstone') {
+                    a.classList.toggle('active', narrativePages.includes(pageId));
                 } else {
                     a.classList.toggle('active', navTarget === pageId);
                 }
